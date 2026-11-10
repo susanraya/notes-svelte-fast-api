@@ -1,9 +1,12 @@
 <script>
-  /* eslint-disable @typescript-eslint/no-unused-vars -- generated imports, matched generously */
-  import { Card, Icon, Label } from "@/lib/ui";
+  import { Icon, Label } from "@/lib/ui";
   import { brand } from "@/lib/brand";
   import { useNavigate } from "@/lib/navigate";
-  import { listNotes, exportNotes as exportNotesToText, importNotes as importNotesFromText } from "@/lib/notes";
+  import {
+    listNotes,
+    exportNotes as exportNotesToText,
+    importNotes as importNotesFromText,
+  } from "@/lib/notes";
 
   const navigate = useNavigate();
 
@@ -115,7 +118,7 @@
           at: `${fmtDate(now)} · ${fmtTime(now)}`,
         };
         exportState = "done";
-      } catch (err) {
+      } catch {
         exportState = "blocked";
       }
       reveal("export");
@@ -149,7 +152,7 @@
         importState = "done";
         reveal("import");
         after(800, () => navigate("notes"));
-      } catch (err) {
+      } catch {
         importState = "invalid";
         reveal("import");
       }
@@ -225,8 +228,8 @@
       </div>
 
       <p data-wf="b-1-0" class="mt-7 max-w-[62ch] text-[15px] leading-[1.65]">
-        Export writes all {noteCount} notes, with their checklist items and tick states, into one
-        JSON file you can keep as a backup.
+        Export writes all {noteCount} notes, with their checklist items and tick states, into one JSON
+        file you can keep as a backup.
       </p>
 
       <dl

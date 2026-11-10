@@ -1,15 +1,9 @@
 <script>
-  /* eslint-disable @typescript-eslint/no-unused-vars -- generated imports, matched generously */
-  import { Button, Checkbox, Empty, Icon, Input, Label, Select, Textarea } from "@/lib/ui";
+  import { Button, Checkbox, Empty, Icon, Input, Label, Textarea } from "@/lib/ui";
   import { brand } from "@/lib/brand";
   import { useNavigate } from "@/lib/navigate";
   import { location, matches } from "@/lib/router.svelte";
-  import {
-    createNote,
-    deleteNote as deleteNoteStore,
-    getNote,
-    updateNote,
-  } from "@/lib/notes";
+  import { createNote, deleteNote as deleteNoteStore, getNote, updateNote } from "@/lib/notes";
 
   const navigate = useNavigate();
 
@@ -461,8 +455,9 @@
                   class="h-11 px-3 text-[11px] font-semibold uppercase tracking-[0.18em] transition-colors duration-150 focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 motion-reduce:transition-none"
                   style="border: {item.id === selectedId
                     ? '3px solid ' + accent
-                    : '1px solid ' + muted + '80'}; border-radius: {brand.radius}; color: {item.id ===
-                  selectedId
+                    : '1px solid ' +
+                      muted +
+                      '80'}; border-radius: {brand.radius}; color: {item.id === selectedId
                     ? accent
                     : muted}; outline-color: {accent};"
                 >
@@ -492,11 +487,11 @@
       </div>
       <p class="col-span-12 text-[12px] leading-5 sm:col-span-8" style="color: {muted};">
         {#if selected}
-          Removing <span style="color: {ink};">“{selected.text}”</span>. The other {items.length - 1} items
-          stay as they are.
+          Removing <span style="color: {ink};">“{selected.text}”</span>. The other {items.length -
+            1} items stay as they are.
         {:else}
-          Choose <span class="uppercase tracking-[0.18em]">Select</span> on a line above, then remove it.
-          Removal takes effect on save.
+          Choose <span class="uppercase tracking-[0.18em]">Select</span> on a line above, then remove
+          it. Removal takes effect on save.
         {/if}
       </p>
     </div>
@@ -554,7 +549,11 @@
         class="inline-flex items-center gap-2 px-2 py-1 text-[11px] uppercase tracking-[0.18em]"
         style="border: 1px solid {muted}80; color: {ink};"
       >
-        <Icon name={online ? "CheckCircle" : "AlertCircle"} class="h-3.5 w-3.5" aria-hidden="true" />
+        <Icon
+          name={online ? "CheckCircle" : "AlertCircle"}
+          class="h-3.5 w-3.5"
+          aria-hidden="true"
+        />
         {online ? "Local only · this browser" : "Offline · still saving locally"}
       </span>
       <span>
