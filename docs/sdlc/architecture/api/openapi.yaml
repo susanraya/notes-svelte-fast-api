@@ -2,6 +2,56 @@
 openapi: 3.1.0
 info:
   title: notes svelte fast api
-  version: architecture-v0
+  version: architecture-v1
   description: Designed API from the approved architecture (not extracted from code).
-paths: {}
+paths:
+  /health:
+    get:
+      summary: Liveness/health check for the provisioned FastAPI service. Returns
+        service status only; no note or personal data.
+      description: Liveness/health check for the provisioned FastAPI service. Returns
+        service status only; no note or personal data.
+      operationId: get_health
+      parameters: []
+      responses:
+        '200':
+          description: '{ "status": "ok" }'
+components:
+  schemas:
+    note:
+      type: object
+      properties:
+        id:
+          type: string
+        text:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - text
+      - created_at
+      - updated_at
+    checklist_item:
+      type: object
+      properties:
+        id:
+          type: string
+        note_id:
+          type: string
+        text:
+          type: string
+        checked:
+          type: boolean
+        position:
+          type: integer
+      required:
+      - id
+      - note_id
+      - text
+      - checked
+      - position
