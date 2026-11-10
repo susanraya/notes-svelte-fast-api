@@ -23,7 +23,7 @@ async function clearNotes(page: Page) {
   await page.reload();
 }
 
-async function readNotes(page: Page): Promise<any[]> {
+async function readNotes(page: Page): Promise<Array<Record<string, unknown>>> {
   return page.evaluate((key) => {
     const raw = localStorage.getItem(key);
     return raw ? JSON.parse(raw) : [];
@@ -32,10 +32,10 @@ async function readNotes(page: Page): Promise<any[]> {
 
 async function seedNotes(page: Page, notes: unknown[]) {
   await page.goto("/notes");
-  await page.evaluate(
-    ({ key, value }) => localStorage.setItem(key, JSON.stringify(value)),
-    { key: STORAGE_KEY, value: notes },
-  );
+  await page.evaluate(({ key, value }) => localStorage.setItem(key, JSON.stringify(value)), {
+    key: STORAGE_KEY,
+    value: notes,
+  });
   await page.reload();
 }
 
@@ -94,11 +94,7 @@ test.describe("checklist items", () => {
 
     let notes = await readNotes(page);
     expect(notes).toHaveLength(1);
-    expect(notes[0].items.map((i: { text: string }) => i.text)).toEqual([
-      "Milk",
-      "Eggs",
-      "Bread",
-    ]);
+    expect(notes[0].items.map((i: { text: string }) => i.text)).toEqual(["Milk", "Eggs", "Bread"]);
     const before = notes[0].items;
 
     // Reopen and add a fourth item -- the first three must stay exactly as they were.
@@ -111,16 +107,13 @@ test.describe("checklist items", () => {
     notes = await readNotes(page);
     expect(notes).toHaveLength(1);
     const after = notes[0].items;
-    expect(after.map((i: { text: string }) => i.text)).toEqual([
-      "Milk",
-      "Eggs",
-      "Bread",
-      "Butter",
-    ]);
-    expect(after.slice(0, 3).map((i: { text: string; checked: boolean }) => ({
-      text: i.text,
-      checked: i.checked,
-    }))).toEqual(
+    expect(after.map((i: { text: string }) => i.text)).toEqual(["Milk", "Eggs", "Bread", "Butter"]);
+    expect(
+      after.slice(0, 3).map((i: { text: string; checked: boolean }) => ({
+        text: i.text,
+        checked: i.checked,
+      })),
+    ).toEqual(
       before.map((i: { text: string; checked: boolean }) => ({
         text: i.text,
         checked: i.checked,
