@@ -16,7 +16,9 @@ export default defineConfig({
     // caches the static assets that render it.
     VitePWA({
       registerType: "autoUpdate",
-      injectRegister: "auto",
+      // Registered explicitly from main.ts via `virtual:pwa-register`, not injected
+      // into index.html -- keeps the registration visible and testable in one place.
+      injectRegister: false,
       workbox: {
         globPatterns: ["**/*.{js,css,html,svg,png,ico}"],
       },
