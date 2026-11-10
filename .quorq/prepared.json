@@ -1,0 +1,22 @@
+{
+  "architecture_npm": [
+    "vite-plugin-pwa"
+  ],
+  "key": {
+    "app_design_id": "d36e5091-7643-4d75-86c1-5be9040c6993",
+    "app_design_version": 1,
+    "architecture_document_id": "076c2589-0afc-456f-89b8-293badf0f3e7",
+    "architecture_version": 1
+  },
+  "outcome": "prepared",
+  "packages": [
+    {
+      "ecosystem": "npm",
+      "installed_version": "2.0.0",
+      "name": "vite-plugin-pwa",
+      "status": "installed",
+      "version": ""
+    }
+  ],
+  "prepared_by_run": "8772ff1e-66e9-4f98-86fa-1acb333c2c88"
+}

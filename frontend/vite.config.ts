@@ -4,9 +4,33 @@ import { fileURLToPath, URL } from "node:url";
 import { svelte } from "@sveltejs/vite-plugin-svelte";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "vite";
+import { VitePWA } from "vite-plugin-pwa";
 
 export default defineConfig({
-  plugins: [svelte(), tailwindcss()],
+  plugins: [
+    svelte(),
+    tailwindcss(),
+    // Precaches the built app shell (HTML/JS/CSS) and registers a service worker so the
+    // SPA opens and keeps working offline after the first load (US-010, NFR: offline
+    // operation). All note data stays in the browser's own local storage; this only
+    // caches the static assets that render it.
+    VitePWA({
+      registerType: "autoUpdate",
+      injectRegister: "auto",
+      workbox: {
+        globPatterns: ["**/*.{js,css,html,svg,png,ico}"],
+      },
+      manifest: {
+        name: "notes svelte fast api",
+        short_name: "Notes",
+        description: "a simple notes app without login",
+        start_url: ".",
+        display: "standalone",
+        background_color: "#f4f4f0",
+        theme_color: "#1d3fff",
+      },
+    }),
+  ],
   resolve: {
     alias: { "@": fileURLToPath(new URL("./src", import.meta.url)) },
     // Svelte's package hands a server build to anything without the browser condition,

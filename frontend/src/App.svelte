@@ -5,10 +5,10 @@
   import NoteDetail from "./screens/NoteDetail.svelte";
   import Backup from "./screens/Backup.svelte";
 
-  // Screens marked bare (shown before sign-in, or hidden from the menu) render on their own.
-  export const routes: Array<{ path: string; component: Component; bare?: boolean }> = [
+  export const routes: Array<{ path: string; component: Component }> = [
     { path: "/notes", component: Notes },
     { path: "/note-detail", component: NoteDetail },
+    { path: "/note-detail/:id", component: NoteDetail },
     { path: "/backup", component: Backup },
   ];
   // Where an unknown path lands.
@@ -39,9 +39,7 @@
   }
 </script>
 
-{#if current?.bare}
-  <current.component />
-{:else if current}
+{#if current}
   <div class="flex min-h-screen flex-col">
     <header
       class="border-b"
@@ -56,7 +54,11 @@
             <Icon name="Home" size={16} />
             Notes
           </a>
-          <a href="/backup" class={linkClass("/backup")} onclick={(event) => follow(event, "/backup")}>
+          <a
+            href="/backup"
+            class={linkClass("/backup")}
+            onclick={(event) => follow(event, "/backup")}
+          >
             <Icon name="Settings" size={16} />
             Backup &amp; About
           </a>
