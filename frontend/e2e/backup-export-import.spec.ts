@@ -74,9 +74,7 @@ test.describe("export", () => {
     expect(parsed.version).toBe(1);
     expect(parsed.notes).toHaveLength(2);
 
-    const byId = new Map(
-      (parsed.notes as Array<{ id: string }>).map((n) => [n.id, n]),
-    );
+    const byId = new Map((parsed.notes as Array<{ id: string }>).map((n) => [n.id, n]));
     const noteA = byId.get("n-export-a") as {
       text: string;
       items: Array<{ text: string; checked: boolean }>;
