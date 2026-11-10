@@ -107,9 +107,7 @@ test.describe("permanent delete", () => {
   }) => {
     await seedBeforeLoad(page, SEED_NOTES);
 
-    await page
-      .getByRole("button", { name: `Delete “Groceries for the week”` })
-      .click();
+    await page.getByRole("button", { name: `Delete “Groceries for the week”` }).click();
     await page.getByRole("button", { name: "Delete" }).click();
 
     await expect(page.getByText("Groceries for the week")).toHaveCount(0);
@@ -130,9 +128,7 @@ test.describe("permanent delete", () => {
   }) => {
     await seedBeforeLoad(page, SEED_NOTES);
 
-    await page
-      .getByRole("button", { name: `Delete “Groceries for the week”` })
-      .click();
+    await page.getByRole("button", { name: `Delete “Groceries for the week”` }).click();
     await page.getByRole("button", { name: "Delete" }).click();
     await expect(page.getByText(/Deleted “/)).toBeVisible();
 

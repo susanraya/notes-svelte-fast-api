@@ -1,5 +1,4 @@
 <script>
-   
   import { Button, Icon, Input, Label } from "@/lib/ui";
   import { brand } from "@/lib/brand";
   import { useNavigate } from "@/lib/navigate";
