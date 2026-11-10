@@ -9,6 +9,7 @@
   export const routes: Array<{ path: string; component: Component; bare?: boolean }> = [
     { path: "/notes", component: Notes },
     { path: "/note-detail", component: NoteDetail },
+    { path: "/note-detail/:id", component: NoteDetail },
     { path: "/backup", component: Backup },
   ];
   // Where an unknown path lands.
@@ -56,7 +57,11 @@
             <Icon name="Home" size={16} />
             Notes
           </a>
-          <a href="/backup" class={linkClass("/backup")} onclick={(event) => follow(event, "/backup")}>
+          <a
+            href="/backup"
+            class={linkClass("/backup")}
+            onclick={(event) => follow(event, "/backup")}
+          >
             <Icon name="Settings" size={16} />
             Backup &amp; About
           </a>
