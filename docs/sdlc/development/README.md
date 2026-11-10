@@ -3,99 +3,83 @@
 > Maintained by QuorQ AI SDLC. Text between `sdlc:auto` markers is regenerated; anything outside them is yours and is kept.
 
 <!-- sdlc:auto:start narrative -->
-### PLAN-SPRINT-1 · approved · source: plan:Sprint 1
+### PLAN-1 · approved · source: plan:v1
 
-Sprint 1 plan (approved, v1, capacity 20) targets standing up local-storage persistence and the core create/view/checklist flow with zero-friction, no-login access.
+Development plan version 1 was approved, organizing the notes app build into three sprints of 20-point capacity each.
 
-Plan version 1, status approved. Sprint 1 goal: 'Stand up local-storage persistence and the core create/view/checklist flow with zero-friction, no-login access.' Capacity: 20 points. Backlog items touching this scope per epics: EPIC-001 Note Creation and Content (US-001 Create a plain-text note, 3 pts; US-002 Add a to-do checklist to a note, 3 pts; US-003 Check and uncheck checklist items, 2 pts), EPIC-002 Viewing and Finding Notes (US-004 View all notes in a single list newest first, 3 pts; US-005 Open and view a note, 2 pts; US-006 Search notes by text, 3 pts), EPIC-004 Local Storage and Offline Use (US-009 Persist notes in browser local storage, 5 pts; US-010 Use the app offline, 3 pts; US-011 Understand notes stay on one browser only, 1 pt). All items assigned to role frontend-agent.
+Plan status: approved, version 1. Sprint 1 goal: stand up local-storage persistence and the core create/view/checklist flow with zero-friction, no-login access (capacity 20). Sprint 2 goal: complete the note lifecycle (edit, delete, search, checklist toggling), add offline support, and ship export/import backup (capacity 20). Sprint 3 goal: polish responsive layout and accessibility across the whole app (capacity 20). Backlog items span six epics: EPIC-001 Note Creation and Content (US-001, US-002, US-003), EPIC-002 Viewing and Finding Notes (US-004, US-005, US-006), EPIC-003 Editing and Deleting Notes (US-007, US-008), EPIC-004 Local Storage and Offline Use (US-009, US-010, US-011), EPIC-005 Backup and Data Portability (US-012, US-013), EPIC-006 Access, Platform, and Privacy Posture (US-014 through US-018). All stories are assigned to the frontend-agent role. The plan input does not specify which individual stories were assigned to which sprint beyond the stated goals, so no per-sprint item breakdown is recorded here.
 
-**Related:** US-001, US-002, US-003, US-004, US-005, US-006, US-009, US-010, US-011
+**Related:** US-001, US-002, US-003, US-004, US-005, US-006, US-007, US-008, US-009, US-010, US-011, US-012, US-013, US-014, US-015, US-016, US-017, US-018
 
-### PLAN-SPRINT-2 · approved · source: plan:Sprint 2
+### DEV-US-003 · approved · source: dev:US-003
 
-Sprint 2 plan (approved, v1, capacity 20) completes the note lifecycle (edit, delete, search, checklist toggling), adds offline support, and ships export/import backup.
+Checklist item check/uncheck functionality (US-003) was delivered during the development run.
 
-Plan version 1, status approved. Sprint 2 goal: 'Complete the note lifecycle (edit, delete, search, checklist toggling), add offline support, and ship export/import backup.' Capacity: 20 points. Relevant backlog items: EPIC-003 Editing and Deleting Notes (US-007 Edit an existing note, 3 pts; US-008 Delete a note permanently, 2 pts), EPIC-005 Backup and Data Portability (US-012 Export notes to a file, 3 pts; US-013 Import notes from a file, 3 pts). All items assigned to role frontend-agent.
+Ticket US-003 'Check and uncheck checklist items' status=delivered. Commit: 435cc47e5c83ac78e529d130fc97651673d1a066.
 
-**Related:** US-007, US-008, US-012, US-013
+**Related:** US-003
 
-### PLAN-SPRINT-3 · approved · source: plan:Sprint 3
+### DEV-US-006 · approved · source: dev:US-006
 
-Sprint 3 plan (approved, v1, capacity 20) polishes responsive layout and accessibility across the whole app.
+Text search across notes (US-006) was delivered during the development run.
 
-Plan version 1, status approved. Sprint 3 goal: 'Polish responsive layout and accessibility across the whole app.' Capacity: 20 points. Relevant backlog items: EPIC-006 Access, Platform, and Privacy Posture, specifically US-016 Use the app on mobile and desktop responsively (5 pts) and US-017 Access the app with accessibility support (5 pts). Also in EPIC-006 but not tied to a specific sprint in the plan input: US-014 (1 pt), US-015 (1 pt), US-018 (1 pt). All items assigned to role frontend-agent.
+Ticket US-006 'Search notes by text' status=delivered. Commit: 23762b4bceef5847cbe1497342fcd2fac426acb5.
 
-**Related:** US-016, US-017
+**Related:** US-006
 
-### DEV-US-001 · approved · source: dev:US-001
+### DEV-US-007 · approved · source: dev:US-007
 
-Plain-text note creation story delivered.
+Editing of existing notes (US-007) was delivered during the development run.
 
-Ticket US-001 'Create a plain-text note' status: delivered. Commit db5f3bed0fe58e5c5b3175e838ed95932800e138.
+Ticket US-007 'Edit an existing note' status=delivered. Commit: 435cc47e5c83ac78e529d130fc97651673d1a066.
 
-**Related:** US-001
+**Related:** US-007
 
-### DEV-US-002 · approved · source: dev:US-002
+### DEV-US-008 · approved · source: dev:US-008
 
-To-do checklist addition to a note delivered.
+Permanent note deletion (US-008) was delivered during the development run.
 
-Ticket US-002 'Add a to-do checklist to a note' status: delivered. Commit db5f3bed0fe58e5c5b3175e838ed95932800e138.
+Ticket US-008 'Delete a note permanently' status=delivered. Commit: 23762b4bceef5847cbe1497342fcd2fac426acb5.
 
-**Related:** US-002
+**Related:** US-008
 
-### DEV-US-004 · approved · source: dev:US-004
+### DEV-US-010 · approved · source: dev:US-010
 
-Notes list view (newest first) delivered.
+Offline usability (US-010) was delivered during the development run.
 
-Ticket US-004 'View all notes in a single list, newest first' status: delivered. Commit db5f3bed0fe58e5c5b3175e838ed95932800e138.
+Ticket US-010 'Use the app offline' status=delivered. Commit: 435cc47e5c83ac78e529d130fc97651673d1a066.
 
-**Related:** US-004
+**Related:** US-010
 
-### DEV-US-005 · approved · source: dev:US-005
+### DEV-US-011 · approved · source: dev:US-011
 
-Open/view a note delivered.
+Single-browser storage disclosure (US-011) was delivered during the development run.
 
-Ticket US-005 'Open and view a note' status: delivered. Commit db5f3bed0fe58e5c5b3175e838ed95932800e138.
+Ticket US-011 'Understand that notes stay on one browser only' status=delivered. Commit: 435cc47e5c83ac78e529d130fc97651673d1a066.
 
-**Related:** US-005
+**Related:** US-011
 
-### DEV-US-009 · approved · source: dev:US-009
+### DEV-US-012 · approved · source: dev:US-012
 
-Local-storage persistence of notes delivered.
+Export notes to a file (US-012) was delivered during the development run.
 
-Ticket US-009 'Persist notes in the browser's local storage' status: delivered. Commit db5f3bed0fe58e5c5b3175e838ed95932800e138.
+Ticket US-012 'Export notes to a file' status=delivered. Commit: 7521c8472142f51ef632444a65350db136442cad.
 
-**Related:** US-009
+**Related:** US-012
 
-### DEV-US-014 · approved · source: dev:US-014
+### DEV-US-013 · approved · source: dev:US-013
 
-No-login/no-account usage delivered.
+Import notes from a file (US-013) was delivered during the development run.
 
-Ticket US-014 'Use the app with no login or account' status: delivered. Commit 8ebdd12b9fbe1df24102ce11095fc756656fd3fd.
+Ticket US-013 'Import notes from a file' status=delivered. Commit: 7521c8472142f51ef632444a65350db136442cad.
 
-**Related:** US-014
+**Related:** US-013
 
-### DEV-US-015 · approved · source: dev:US-015
+### DEV-RUN-STATUS · approved · source: dev:run
 
-Free-of-charge usage delivered.
+Overall development run completed with 8 of 18 planned stories reported as delivered in this input.
 
-Ticket US-015 'Use the app free of charge' status: delivered. Commit 8ebdd12b9fbe1df24102ce11095fc756656fd3fd.
+Development run status: completed. Tickets with recorded delivery: US-003, US-006, US-007, US-008, US-010, US-011, US-012, US-013, each delivered with an associated commit. No status was reported in this input for US-001, US-002, US-004, US-005, US-009, US-014, US-015, US-016, US-017, or US-018, so their development state is not documented here.
 
-**Related:** US-015
-
-### DEV-US-018 · approved · source: dev:US-018
-
-No personal-data collection or consent prompts delivered.
-
-Ticket US-018 'No personal-data collection or consent prompts' status: delivered. Commit 8ebdd12b9fbe1df24102ce11095fc756656fd3fd.
-
-**Related:** US-018
-
-### DEV-RUN-1 · approved · source: dev:run
-
-First development run completed, delivering 8 of the 18 planned stories.
-
-Development run status: completed. Delivered tickets: US-001, US-002, US-004, US-005, US-009 (commit db5f3bed0fe58e5c5b3175e838ed95932800e138), and US-014, US-015, US-018 (commit 8ebdd12b9fbe1df24102ce11095fc756656fd3fd). Remaining backlog items (US-003, US-006, US-007, US-008, US-010, US-011, US-012, US-013, US-016, US-017) were not reported as delivered in this run's input.
-
-**Related:** US-001, US-002, US-004, US-005, US-009, US-014, US-015, US-018
+**Related:** US-003, US-006, US-007, US-008, US-010, US-011, US-012, US-013
 <!-- sdlc:auto:end narrative -->
