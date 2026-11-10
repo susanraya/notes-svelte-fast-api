@@ -7,13 +7,13 @@ _No E2E run yet._
 <!-- sdlc:auto:end e2e -->
 
 <!-- sdlc:auto:start unit -->
-**Coverage:** —
+**Coverage:** backend 62.2% · frontend 54.9%
 
-**Test cases:** — / — written
+**Test cases:** 0 / 17 written
 
-**Lines written:** —
+**Lines written:** 0
 
-**Files deferred:** —
+**Files deferred:** 0
 <!-- sdlc:auto:end unit -->
 
 <!-- sdlc:auto:start dev-checks -->

@@ -5,7 +5,7 @@
 <!-- sdlc:auto:start overview -->
 a simple notes app without login
 
-**Documentation version:** v4
+**Documentation version:** v5
 <!-- sdlc:auto:end overview -->
 
 ## Contents
@@ -16,7 +16,7 @@ a simple notes app without login
 | [Requirements](requirements/README.md) | v1 approved |
 | [Architecture](architecture/README.md) | 14 entries |
 | [Development](development/README.md) | 12 entries |
-| [Testing](testing/README.md) | 0 entries |
+| [Testing](testing/README.md) | 3 entries |
 | [Deployment](deployment/README.md) | 0 entries |
 | [Maintenance](maintenance/README.md) | 0 entries |
 | [Data model](architecture/data-model.md) | generated |
@@ -31,5 +31,5 @@ a simple notes app without login
 | [Runbook](deployment/runbook.md) | not deployed yet |
 | [Release notes](deployment/release-notes.md) | 0 releases |
 | [Traceability matrix](traceability-matrix.md) | 18 requirements |
-| [Changelog](CHANGELOG.md) | 4 versions |
+| [Changelog](CHANGELOG.md) | 5 versions |
 <!-- sdlc:auto:end contents -->
