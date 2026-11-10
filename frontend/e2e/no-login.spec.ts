@@ -24,12 +24,10 @@ test("[AC-025] a first-time visitor lands on a usable app with no sign-up, login
 
   // Nothing on the landing screen asks for credentials or personal details.
   await expect(page.locator('input[type="email"], input[type="password"]')).toHaveCount(0);
-  await expect(
-    page.getByRole("button", { name: /sign in|log in|register|sign up/i }),
-  ).toHaveCount(0);
-  await expect(page.getByRole("link", { name: /sign in|log in|register|sign up/i })).toHaveCount(
+  await expect(page.getByRole("button", { name: /sign in|log in|register|sign up/i })).toHaveCount(
     0,
   );
+  await expect(page.getByRole("link", { name: /sign in|log in|register|sign up/i })).toHaveCount(0);
 
   // No session/auth token exists -- nothing was required to reach this screen.
   const sessionToken = await page.evaluate(() => localStorage.getItem("session_token"));
