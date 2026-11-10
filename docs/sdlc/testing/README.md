@@ -3,29 +3,35 @@
 > Maintained by QuorQ AI SDLC. Text between `sdlc:auto` markers is regenerated; anything outside them is yours and is kept.
 
 <!-- sdlc:auto:start narrative -->
-### TEST-001 · approved · source: testing:run_checks
+### TEST-4c908987 · approved · source: testing:write_tests:4c908987-ddcb-43e4-a7b8-92b46cf08b20
 
-_2026-11-10_
+Test writing task completed successfully, producing 2 test files.
 
-Automated check suite was run against the current build and all checks passed.
+Ticket 4c908987-ddcb-43e4-a7b8-92b46cf08b20: write_tests status=succeeded, detail='2 test file(s)'. No further information on which features or requirements these tests cover was provided in the input.
 
-run_checks task completed with status succeeded. Detail reported: 6/6 checks passed. No ticket was associated with this run, and the input does not specify which checks were included, so no further breakdown can be documented.
+### TEST-b7e2c6da · approved · source: testing:write_tests:b7e2c6da-f0da-4653-8756-3d69f8aaf952
 
-### TEST-002 · approved · source: testing:write_tests:c3a4fcc3-2e01-42d4-89f6-7927b31bcc5d
+Test writing task completed successfully, producing 2 test files.
 
-_2026-11-10_
+Ticket b7e2c6da-f0da-4653-8756-3d69f8aaf952: write_tests status=succeeded, detail='2 test file(s)'. No further information on which features or requirements these tests cover was provided in the input.
 
-New automated tests were written to verify the app has no login requirement (US-014, AC-025), covering both unit-level routing/UI checks and a full end-to-end browser flow.
+### TEST-db81e638 · approved · source: testing:write_tests:db81e638-c414-48ae-bdca-616295704d6c
 
-Task write_tests (ticket c3a4fcc3-2e01-42d4-89f6-7927b31bcc5d) completed with status succeeded. Added coverage for US-014/AC-025 ('use the app with no login'). Extended App.test.ts and added Notes.test.ts (Vitest) asserting: (1) the route table contains no login/registration route, (2) an unknown first visit lands directly on the usable Notes screen, (3) no credential or personal-detail fields exist anywhere in the UI. Also added frontend/e2e/no-login.spec.ts (Playwright), a real-browser end-to-end test driving: landing on the app, creating a note, adding a checklist item, saving the note, deleting a note, and visiting the Backup screen -- all performed with zero sign-in or registration steps.
+Test writing task completed successfully, producing 1 test file.
 
-**Related:** US-014
+Ticket db81e638-c414-48ae-bdca-616295704d6c: write_tests status=succeeded, detail='1 test file(s)'. No further information on which features or requirements these tests cover was provided in the input.
 
-### TEST-003 · approved · source: testing:write_tests:31adfd00-141e-4d14-8c11-5ca0bbc71624
+### TEST-d82667e8 · approved · source: testing:write_tests:d82667e8-6355-4946-b235-878489cf01e3
 
-_2026-11-10_
+Test writing task completed successfully, producing 2 test files.
 
-A second test-writing task completed successfully, adding two test files, but the input does not specify which requirement or functionality they cover.
+Ticket d82667e8-6355-4946-b235-878489cf01e3: write_tests status=succeeded, detail='2 test file(s)'. No further information on which features or requirements these tests cover was provided in the input.
 
-Task write_tests (ticket 31adfd00-141e-4d14-8c11-5ca0bbc71624) completed with status succeeded. Detail reported only: '2 test file(s)'. No further description of scope, requirement linkage, or test content was provided in the input, so none is inferred here.
+### TEST-run-checks · approved · source: testing:run_checks
+
+Automated check run completed with all checks passing.
+
+run_checks (ticket=None): status=succeeded, detail='6/6 checks passed'. No breakdown of individual check names or which requirements they validate was given in the input.
+
+**Related:** TEST-4c908987, TEST-b7e2c6da, TEST-db81e638, TEST-d82667e8
 <!-- sdlc:auto:end narrative -->
