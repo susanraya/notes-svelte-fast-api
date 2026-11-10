@@ -7,82 +7,86 @@ _Up to date._
 <!-- sdlc:auto:end status -->
 
 <!-- sdlc:auto:start source -->
-Generated from commit `918f1d7` · model `claude-sonnet-5`
+Generated from commit `8cf9f17` · model `claude-sonnet-5`
 <!-- sdlc:auto:end source -->
 
 <!-- sdlc:auto:start overview -->
-This is a generated starter for a simple notes app with two independently runnable parts in one repo: a Svelte 5 + Vite frontend containing approved, reviewed screens that currently render seeded sample data, and a FastAPI backend scaffold that only exposes a health check endpoint (no data model or business routes have been approved/generated yet). The approved stack targets PostgreSQL 16 and AWS, but the backend defaults to a local SQLite file so it runs with zero external services, and a docker-compose file is provided to run Postgres locally when wiring the frontend to real endpoints begins.
+This is a generated 'notes' app scaffold with two independent apps in one repo: a Svelte 5 + Vite frontend that renders all approved screens against seeded sample data, and a FastAPI backend that currently exposes only a health check (its real routes/models were not yet approved when generated). The backend uses SQLAlchemy with a SQLite file by default (swap in Postgres via DATABASE_URL), and docker-compose provides a local Postgres 16 container for when that wiring happens.
 <!-- sdlc:auto:end overview -->
 
 <!-- sdlc:auto:start prerequisites -->
-- Node.js (for Vite 6 / npm scripts)
-- npm
-- Python 3.12
+- Node.js (for npm/Vite, Svelte 5, Vitest, Playwright)
+- Python 3.12 (matches backend/Dockerfile base image)
 - pip
-- Docker and Docker Compose (optional, for a local Postgres instance via docker-compose.yml)
+- Docker and Docker Compose (optional, for the Postgres service in docker-compose.yml)
 <!-- sdlc:auto:end prerequisites -->
 
 <!-- sdlc:auto:start setup -->
-1. Clone the repository.
-2. Backend: cd backend && pip install -r requirements.txt
-3. Frontend: cd frontend && npm install
-4. (Optional, for Postgres instead of the SQLite default) from the repo root run: docker-compose up -d db
-5. Start the backend API: cd backend && uvicorn app.main:app --reload
-6. Start the frontend dev server: cd frontend && npm run dev
+1. Clone the repository
+2. cd backend && pip install -r requirements.txt
+3. cd frontend && npm install
+4. (optional) docker compose up -d to start the local Postgres 16 database
+5. (optional) set DATABASE_URL to point the backend at Postgres instead of the default SQLite file
+6. (optional) set VITE_API_BASE_URL / VITE_API_SECRET_KEY for the frontend if pointing at a real backend
 <!-- sdlc:auto:end setup -->
 
 <!-- sdlc:auto:start run -->
 | Name | Command | Description |
 |---|---|---|
-| backend dev | `uvicorn app.main:app --reload` | Runs the FastAPI app from backend/ with auto-reload; serves /health and the OpenAPI docs. |
-| frontend dev | `npm run dev` | Starts the Vite dev server for the Svelte app (run from frontend/). |
-| frontend build | `npm run build` | Bundles the frontend for production (does not typecheck). |
-| frontend preview | `npm run preview` | Serves the production build locally. |
-| db (compose) | `docker-compose up -d db` | Starts a local PostgreSQL 16 container (user/pass/db: app) for when DATABASE_URL is pointed at Postgres. |
+| frontend dev | `npm run dev` | Starts the Vite dev server for the Svelte frontend (run from frontend/) |
+| frontend build | `npm run build` | Bundles the app for production (does not typecheck) |
+| frontend preview | `npm run preview` | Serves the production build locally |
+| backend dev | `uvicorn app.main:app --reload` | Runs the FastAPI backend with auto-reload (run from backend/) |
+| db up | `docker compose up -d` | Starts the Postgres 16 container defined in docker-compose.yml |
 <!-- sdlc:auto:end run -->
 
 <!-- sdlc:auto:start structure -->
 | Path | Purpose |
 |---|---|
-| `backend/` | FastAPI service scaffold: app package, routers, models, schemas, tests, Dockerfile. |
-| `backend/app` | Application code: main.py (entrypoint + /health), database.py (engine/session), models.py, schemas.py, routers/. |
-| `backend/tests` | Pytest suite and fixtures (conftest.py), currently covering the health check. |
-| `frontend/` | Vite + Svelte 5 app: approved screens, design-system UI components, router, API client. |
-| `frontend/src/lib` | Shared frontend code: api.ts (API client), router.svelte.ts/navigate.ts, and the ui/ component library. |
-| `frontend/e2e` | Playwright end-to-end specs. |
-| `.devcontainer` | VS Code/devcontainer configuration for a consistent dev environment. |
-| `.quorq` | Quorq platform metadata (handoff.json) for this generated project. |
+| `frontend` | Svelte 5 + Vite SPA; approved screens running on seeded sample data |
+| `frontend/src` | App source: routing shell, screens, UI components, API client |
+| `frontend/src/screens` | One Svelte component per approved screen (Notes, NoteDetail, Backup) |
+| `frontend/src/lib` | Shared logic: API client (api.ts), notes logic, router, UI component library (ui/) |
+| `frontend/e2e` | Playwright acceptance test specs |
+| `backend` | FastAPI service; scaffolded with health check only, stub routes pending architecture approval |
+| `backend/app` | Application code: main.py entrypoint, database.py engine/session, models.py, schemas.py, routers/ |
+| `backend/tests` | Pytest test suite for the backend |
+| `backend/scripts` | Utility scripts (e.g. check_connections.py) |
+| `.devcontainer` | VS Code devcontainer configuration |
+| `.quorq` | Quorq platform metadata (handoff/prepared state) |
 <!-- sdlc:auto:end structure -->
 
 <!-- sdlc:auto:start conventions -->
-- Backend: one router per architecture component that owns endpoints; every generated route currently returns a typed StubResponse until implemented.
-- Backend: SQLAlchemy models declare tables by inheriting the shared `Base` in app/database.py; `main.py` imports models before calling create_all.
-- Backend: request-scoped DB sessions via the `get_db` dependency generator, one session per request.
-- Backend: DATABASE_URL env var selects the database (SQLite file by default, Postgres in production); ALLOWED_ORIGINS env var (comma-separated) configures CORS, defaulting to the local Vite origins.
-- Frontend: one Svelte component per approved screen; `src/lib/ui/` holds the shared component/icon vocabulary all screens are built against.
-- Frontend: `apiFetch` in src/lib/api.ts centralizes API calls, base URL (VITE_API_BASE_URL) and bearer auth (VITE_API_SECRET_KEY / session token in localStorage) — screens do not yet call it, they render seeded data.
-- Frontend: Prettier + ESLint (flat config) enforce formatting/lint rules across the app.
+- Backend routes are organized one router per architecture component under app/routers/, registered with tags
+- Unimplemented backend routes return a typed StubResponse (endpoint, status, detail) rather than erroring, so OpenAPI stays complete before handlers exist
+- SQLAlchemy models all inherit from the shared Base in app/database.py; tables are created via Base.metadata.create_all on app startup (no migrations yet)
+- Backend DB connection defaults to local SQLite (sqlite:///./app.db) and is overridden entirely via the DATABASE_URL env var
+- CORS allowed origins are read from ALLOWED_ORIGINS (comma-separated) with localhost:5173 as the dev fallback
+- Frontend screens are plain Svelte 5 components under src/screens/, one per approved screen, routed via src/lib/router.svelte.ts and registered in App.svelte
+- Frontend component tests live beside the components they test (e.g. Notes.test.ts next to Notes.svelte)
+- Frontend API calls go through the single apiFetch helper in src/lib/api.ts, which attaches a bearer token (session token or shared API secret)
+- UI building blocks live in frontend/src/lib/ui/ as a shared component vocabulary; brand tokens in src/lib/brand.ts and CSS variables in src/index.css
 <!-- sdlc:auto:end conventions -->
 
 <!-- sdlc:auto:start testing -->
 | Name | Command | Description |
 |---|---|---|
-| backend test | `cd backend && pytest` | Runs the pytest suite (pythonpath=. set in pytest.ini) against the FastAPI app, with pytest-cov available for coverage. |
-| backend lint | `cd backend && ruff check .` | Lints the backend Python code with Ruff. |
-| backend format | `cd backend && ruff format .` | Formats backend Python code with Ruff. |
-| frontend test | `cd frontend && npm test` | Runs Vitest component tests (Testing Library for Svelte) in jsdom, with v8 coverage. |
-| frontend lint | `cd frontend && npm run lint` | Runs ESLint over the whole frontend app; this is the gate the platform checks during development. |
-| frontend format check | `cd frontend && npm run format:check` | Checks formatting with Prettier without writing changes. |
-| frontend e2e | `cd frontend && npm run test:e2e` | Runs Playwright acceptance tests from e2e/; without E2E_BASE_URL set it boots the backend (uvicorn) and the built/previewed frontend itself. |
-| install e2e browsers | `cd frontend && npm run test:e2e:install` | Installs the Chromium browser Playwright needs before running e2e tests. |
+| frontend unit tests | `npm run test` | Runs Vitest component tests (jsdom) located beside components in src/ |
+| frontend lint | `npm run lint` | Runs ESLint over the frontend app (gate used by the platform) |
+| frontend typecheck | `npm run typecheck` | Runs svelte-check over the TypeScript in the frontend |
+| frontend e2e | `npm run test:e2e` | Runs Playwright specs from frontend/e2e; builds/serves the app locally unless E2E_BASE_URL is set |
+| frontend e2e browser install | `npm run test:e2e:install` | Installs the Chromium browser Playwright needs |
+| backend tests | `pytest` | Runs the backend pytest suite (pytest.ini sets pythonpath=. and testpaths=tests) |
+| backend lint | `ruff check .` | Lints the backend Python code |
+| backend format | `ruff format .` | Formats the backend Python code |
 <!-- sdlc:auto:end testing -->
 
 <!-- sdlc:auto:start troubleshooting -->
 | Problem | Solution |
 |---|---|
-| Frontend dev server calls fail with a CORS error. | Ensure the backend is running and, if the frontend isn't served from localhost:5173/127.0.0.1:5173, set the backend's ALLOWED_ORIGINS env var to a comma-separated list including the frontend's origin. |
-| `pytest` run from backend/ fails to `import app`. | Run pytest from the backend/ directory so pytest.ini's `pythonpath = .` applies, or run it as `cd backend && pytest`. |
-| Frontend never reaches the real backend (always seeded data / wrong host). | Set VITE_API_BASE_URL (and VITE_API_SECRET_KEY if the API requires the shared bearer) before building/running the frontend; it defaults to http://localhost:8000. |
-| `npm run test:e2e` fails because Chromium isn't installed. | Run `npm run test:e2e:install` once before running the e2e suite. |
-| Backend can't connect to Postgres. | Start it with `docker-compose up -d db` from the repo root and point DATABASE_URL at it; otherwise the backend falls back to a local SQLite file (app.db) with no server needed. |
+| Frontend can't reach the backend / CORS errors in the browser console | Set ALLOWED_ORIGINS on the backend to include the frontend's origin, and/or set VITE_API_BASE_URL on the frontend to point at the running backend (defaults to http://localhost:8000) |
+| Backend fails to connect to Postgres | Ensure docker compose up -d has started the db service and set DATABASE_URL accordingly; with no DATABASE_URL the backend falls back to a local SQLite file (app.db), so it still runs without Postgres |
+| `pytest` fails with ImportError for `app` | Run pytest from the backend/ directory so pytest.ini's pythonpath=. setting applies |
+| Playwright e2e tests fail to launch a browser | Run `npm run test:e2e:install` first to fetch Chromium |
+| `npm run build` succeeds but TypeScript errors are hidden | Build does not typecheck; run `npm run typecheck` separately to catch TS issues |
 <!-- sdlc:auto:end troubleshooting -->
