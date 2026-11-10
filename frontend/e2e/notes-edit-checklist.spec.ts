@@ -57,7 +57,9 @@ test.describe("checklist toggle persistence", () => {
 
     // Persisted immediately, without pressing Save.
     let notes = await readNotes(page);
-    let note = notes.find((n) => n.id === "n-edit") as { items: Array<{ id: string; checked: boolean }> };
+    let note = notes.find((n) => n.id === "n-edit") as {
+      items: Array<{ id: string; checked: boolean }>;
+    };
     expect(note.items.find((i) => i.id === "c1")?.checked).toBe(true);
     expect(note.items.find((i) => i.id === "c2")?.checked).toBe(false);
 
@@ -67,7 +69,9 @@ test.describe("checklist toggle persistence", () => {
     await expect(page.getByRole("checkbox", { name: /Pay electricity bill/ })).not.toBeChecked();
 
     notes = await readNotes(page);
-    note = notes.find((n) => n.id === "n-edit") as { items: Array<{ id: string; checked: boolean }> };
+    note = notes.find((n) => n.id === "n-edit") as {
+      items: Array<{ id: string; checked: boolean }>;
+    };
     expect(note.items.find((i) => i.id === "c1")?.checked).toBe(true);
   });
 });
@@ -86,9 +90,7 @@ test.describe("editing text and items", () => {
     await page.reload();
     await page.getByText("Groceries and errands — updated plan", { exact: true }).click();
 
-    await expect(page.getByLabel("Note text")).toHaveValue(
-      "Groceries and errands — updated plan",
-    );
+    await expect(page.getByLabel("Note text")).toHaveValue("Groceries and errands — updated plan");
     await expect(page.getByText("Buy milk")).toBeVisible();
     await expect(page.getByText("Pay electricity bill")).toBeVisible();
     await expect(page.getByText("Return library book")).toBeVisible();

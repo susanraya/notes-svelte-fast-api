@@ -110,7 +110,10 @@ describe("NoteDetail (checklist toggles persist immediately)", () => {
 describe("NoteDetail (edit, save, reload)", () => {
   it("[AC-014] changing the note text or checklist items and saving updates the note via updateNote() and the changes survive a page reload", async () => {
     vi.useFakeTimers();
-    const note = createNote({ text: "Old text", items: [{ text: "Old item", checked: false, position: 0 }] });
+    const note = createNote({
+      text: "Old text",
+      items: [{ text: "Old item", checked: false, position: 0 }],
+    });
     go(`/note-detail/${note.id}`, true);
     const { unmount } = render(NoteDetail);
     await flush();
