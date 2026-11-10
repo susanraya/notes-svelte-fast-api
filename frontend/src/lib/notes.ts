@@ -90,6 +90,15 @@ export function getNote(id: string): Note | null {
   return readAll().find((note) => note.id === id) ?? null;
 }
 
+function mapItems(items: NoteDraft["items"]): NoteItem[] {
+  return items.map((item, index) => ({
+    id: item.id ?? newId("item"),
+    text: item.text,
+    checked: item.checked,
+    position: item.position ?? index,
+  }));
+}
+
 export function createNote(draft: NoteDraft): Note {
   const now = new Date().toISOString();
   const note: Note = {
@@ -97,12 +106,7 @@ export function createNote(draft: NoteDraft): Note {
     text: draft.text,
     created_at: now,
     updated_at: now,
-    items: draft.items.map((item, index) => ({
-      id: item.id ?? newId("item"),
-      text: item.text,
-      checked: item.checked,
-      position: item.position ?? index,
-    })),
+    items: mapItems(draft.items),
   };
   const notes = readAll();
   notes.push(note);
@@ -118,12 +122,7 @@ export function updateNote(id: string, draft: NoteDraft): Note | null {
     ...notes[index],
     text: draft.text,
     updated_at: new Date().toISOString(),
-    items: draft.items.map((item, idx) => ({
-      id: item.id ?? newId("item"),
-      text: item.text,
-      checked: item.checked,
-      position: item.position ?? idx,
-    })),
+    items: mapItems(draft.items),
   };
   notes[index] = updated;
   writeAll(notes);

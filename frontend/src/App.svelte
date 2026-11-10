@@ -5,8 +5,7 @@
   import NoteDetail from "./screens/NoteDetail.svelte";
   import Backup from "./screens/Backup.svelte";
 
-  // Screens marked bare (shown before sign-in, or hidden from the menu) render on their own.
-  export const routes: Array<{ path: string; component: Component; bare?: boolean }> = [
+  export const routes: Array<{ path: string; component: Component }> = [
     { path: "/notes", component: Notes },
     { path: "/note-detail", component: NoteDetail },
     { path: "/note-detail/:id", component: NoteDetail },
@@ -40,9 +39,7 @@
   }
 </script>
 
-{#if current?.bare}
-  <current.component />
-{:else if current}
+{#if current}
   <div class="flex min-h-screen flex-col">
     <header
       class="border-b"
